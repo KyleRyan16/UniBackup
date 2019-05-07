@@ -4,25 +4,12 @@ using UnityEngine;
 
 public class EnvironmentDestroyer : MonoBehaviour {
 
-    Collider2D ObjectDestroyCollider;
-    Collider2D[] OverlapResult;
-    ContactFilter2D contactFilter;
-	// Use this for initialization
-	void Start () {
 
-        ObjectDestroyCollider = GetComponent<Collider2D>();
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Destroyed" + collision.gameObject.name);
 
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        Destroy(collision.gameObject);
+    }
 
-        ObjectDestroyCollider.OverlapCollider(contactFilter, OverlapResult)
-
-
-        if(OverlapResult.Length > 0)
-        {
-             Destroy(OverlapResult.GetValue(0));
-        }
-	}
 }
